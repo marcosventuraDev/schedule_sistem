@@ -4,7 +4,9 @@
  */
 package PRINCIPAL;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -22,6 +24,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
     public PRINCIPAL() {
         initComponents();
         INICIACALENDARIO();
+        CALENDARIO();
         
     }
 
@@ -79,6 +82,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
         t31 = new javax.swing.JLabel();
         t32 = new javax.swing.JLabel();
         t33 = new javax.swing.JLabel();
+        t34 = new javax.swing.JLabel();
         t35 = new javax.swing.JLabel();
         t36 = new javax.swing.JLabel();
         t37 = new javax.swing.JLabel();
@@ -87,7 +91,6 @@ public class PRINCIPAL extends javax.swing.JFrame {
         t40 = new javax.swing.JLabel();
         t41 = new javax.swing.JLabel();
         t42 = new javax.swing.JLabel();
-        t43 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,7 +98,18 @@ public class PRINCIPAL extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        SelecaoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril ", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Novembro", "Dezembro", " " }));
+        SelecaoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janeiro", "Fevereiro", "Março", "Abril ", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Novembro", "Dezembro" }));
+        SelecaoMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelecaoMesActionPerformed(evt);
+            }
+        });
+
+        SelecaoAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelecaoAnoActionPerformed(evt);
+            }
+        });
 
         ls1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ls1.setForeground(new java.awt.Color(255, 0, 0));
@@ -190,11 +204,13 @@ public class PRINCIPAL extends javax.swing.JFrame {
 
         t33.setText("0");
 
+        t34.setText("0");
+
         t35.setText("0");
 
+        t36.setForeground(new java.awt.Color(255, 0, 0));
         t36.setText("0");
 
-        t37.setForeground(new java.awt.Color(255, 0, 0));
         t37.setText("0");
 
         t38.setText("0");
@@ -206,8 +222,6 @@ public class PRINCIPAL extends javax.swing.JFrame {
         t41.setText("0");
 
         t42.setText("0");
-
-        t43.setText("0");
 
         jLayeredPane2.setLayer(SelecaoMes, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(SelecaoAno, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -252,6 +266,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jLayeredPane2.setLayer(t31, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t32, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t33, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(t34, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t35, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t36, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t37, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -260,124 +275,107 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jLayeredPane2.setLayer(t40, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t41, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(t42, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(t43, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addComponent(SelecaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addComponent(ls1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ls2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ls3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane2Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(t36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t29, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t30, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t37, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t38, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)))
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(t37, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t29, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t22, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ls4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t39, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ls5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t40, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ls6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t38, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t39, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t40, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t41, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t42, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t41, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t30, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t31, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t32, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t33, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t35, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t23, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t24, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t25, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t26, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t27, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t16, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t17, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t19, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addComponent(t9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(t7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                    .addComponent(SelecaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                    .addComponent(ls1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ls2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ls3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                                    .addComponent(ls4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ls5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ls6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ls7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                    .addGap(64, 64, 64)
-                                    .addComponent(SelecaoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(t7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t35, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                    .addComponent(t28, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                    .addComponent(t21, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                    .addComponent(t14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t42, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ls7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SelecaoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
+
+        jLayeredPane2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t2, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t3, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t4, t40, t41, t42, t5, t6, t7, t8, t9});
+
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
@@ -438,17 +436,17 @@ public class PRINCIPAL extends javax.swing.JFrame {
                     .addComponent(t31)
                     .addComponent(t32)
                     .addComponent(t33)
-                    .addComponent(t35)
-                    .addComponent(t36))
+                    .addComponent(t34)
+                    .addComponent(t35))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t36)
                     .addComponent(t37)
-                    .addComponent(t38)
                     .addComponent(t39)
                     .addComponent(t40)
                     .addComponent(t41)
                     .addComponent(t42)
-                    .addComponent(t43))
+                    .addComponent(t38))
                 .addGap(8, 8, 8))
         );
 
@@ -458,38 +456,51 @@ public class PRINCIPAL extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(451, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLayeredPane2)
+                .addGap(0, 0, 0))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1)
-                .addContainerGap())
+            .addComponent(jLayeredPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1)
-                .addContainerGap())
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 786, 404);
+        setBounds(0, 0, 320, 232);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SelecaoAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoAnoActionPerformed
+        // Alterar os Anos
+        try {
+            int x = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
+            DiaAltera = DiaFixo;
+            CALENDARIO();
+        } catch (Exception e) {
+            SelecaoAno.setSelectedItem(AnoFixo);
+        }
+    }//GEN-LAST:event_SelecaoAnoActionPerformed
+
+    private void SelecaoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoMesActionPerformed
+        // Alterar os meses
+        DiaAltera = DiaFixo;
+        CALENDARIO();
+
+    }//GEN-LAST:event_SelecaoMesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -566,6 +577,7 @@ public class PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JLabel t31;
     private javax.swing.JLabel t32;
     private javax.swing.JLabel t33;
+    private javax.swing.JLabel t34;
     private javax.swing.JLabel t35;
     private javax.swing.JLabel t36;
     private javax.swing.JLabel t37;
@@ -575,7 +587,6 @@ public class PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JLabel t40;
     private javax.swing.JLabel t41;
     private javax.swing.JLabel t42;
-    private javax.swing.JLabel t43;
     private javax.swing.JLabel t5;
     private javax.swing.JLabel t6;
     private javax.swing.JLabel t7;
@@ -640,7 +651,419 @@ public class PRINCIPAL extends javax.swing.JFrame {
             }
         }
             
-            
+        
+        public void CALENDARIO(){
+          t1.setText("");
+          t2.setText("");
+          t3.setText("");
+          t4.setText("");
+          t5.setText("");
+          t6.setText("");
+          t7.setText("");
+          t8.setText("");
+          t9.setText("");
+          t10.setText("");
+          t11.setText("");
+          t12.setText("");
+          t13.setText("");
+          t14.setText("");
+          t15.setText("");
+          t16.setText("");
+          t17.setText("");
+          t18.setText("");
+          t19.setText("");
+          t20.setText("");
+          t21.setText("");
+          t22.setText("");
+          t23.setText("");
+          t24.setText("");
+          t25.setText("");
+          t26.setText("");
+          t27.setText("");
+          t28.setText("");
+          t29.setText("");
+          t30.setText("");
+          t31.setText("");
+          t32.setText("");
+          t33.setText("");
+          t34.setText("");
+          t35.setText("");
+          t36.setText("");
+          t37.setText("");
+          t38.setText("");
+          t39.setText("");
+          t40.setText("");
+          t41.setText("");
+          t42.setText(""); 
+          
+          
+          DiaAltera = DiaFixo;
+          MesAltera = SelecaoMes.getSelectedIndex();
+          AnoAltera = Integer.parseInt(SelecaoAno.getSelectedItem().toString());
+          
+          int TotalDiaMes = 0;
+          //janeiro
+          if (MesAltera == 0){
+              TotalDiaMes = 31;
+          }
+          /*Fevereiro*/
+          else if(MesAltera == 1){
+              //verifica se o ano é bissesto ou não 
+              int resultado = (AnoAltera % 4);
+              if (resultado == 0){
+                  TotalDiaMes = 29; 
+                  //JOptionPane.showMessageDialog(null, "é bissesto");
+//Ano bissesto
+              }else{
+                  TotalDiaMes = 28; //Ano não obissesto
+                 // JOptionPane.showMessageDialog(null, "Não é bissesto");
+              }
+               
+          }
+          /*Março*/
+          else if(MesAltera == 2){
+               TotalDiaMes = 31;
+          }
+          /*Abril*/
+          else if(MesAltera == 3){
+               TotalDiaMes = 30;
+          }
+          /*Maio*/
+          else if(MesAltera == 4){
+               TotalDiaMes = 31;
+          }
+          /*Junho*/
+          else if(MesAltera == 5){
+               TotalDiaMes = 30;
+          }
+          /*Julho*/
+          else if(MesAltera == 6){
+               TotalDiaMes = 31;
+          }
+          /*Agosto*/
+          else if(MesAltera == 7){
+               TotalDiaMes = 31;
+          }
+          /*Setembro*/
+          else if(MesAltera == 8){
+               TotalDiaMes = 30;
+          }
+          /*Outubro*/
+          else if(MesAltera == 9){
+               TotalDiaMes = 31;
+          }
+          /*Novembro*/
+          else if(MesAltera == 10){
+               TotalDiaMes = 30;
+          }
+          /*Dezembro*/
+          else if(MesAltera == 11){
+               TotalDiaMes = 31;
+          }
+          
+          Calendar calendar = Calendar.getInstance();
+          calendar.set(AnoAltera, MesAltera,1);
+          int SetaDia = 0;
+          
+          int Semana = calendar.get(Calendar.DAY_OF_WEEK);
+          
+          if(Semana == Calendar.SUNDAY){
+              SetaDia = 1;
+          }else if(Semana == Calendar.MONDAY){
+              SetaDia = 2;
+          }else if(Semana == Calendar.TUESDAY){
+              SetaDia = 3;
+          }else if(Semana == Calendar.WEDNESDAY){
+              SetaDia = 4;
+          }else if(Semana == Calendar.THURSDAY){
+              SetaDia = 5;
+          }else if(Semana == Calendar.FRIDAY){
+              SetaDia = 6;
+          }else if(Semana == Calendar.SATURDAY){
+              SetaDia = 7;
+          }
+          
+         
+          for (int i = 1; i <= TotalDiaMes; i++){
+              switch (SetaDia){
+                  case 1:
+                      t1.setText(""+i);
+                      break;
+                  case 2:
+                      t2.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t2.setForeground(Color.red);
+                     }else{
+                         t2.setForeground(Color.black);
+                     }
+                     break;
+                  case 3:
+                      t3.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t3.setForeground(Color.red);
+                     }else{
+                         t3.setForeground(Color.black);
+                     }break;
+                  case 4:
+                      t4.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t4.setForeground(Color.red);
+                     }else{
+                         t4.setForeground(Color.black);
+                     }break;
+                  case 5:
+                      t5.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t5.setForeground(Color.red);
+                     }else{
+                         t5.setForeground(Color.black);
+                     }break;
+                  case 6:
+                      t6.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t6.setForeground(Color.red);
+                     }else{
+                         t6.setForeground(Color.black);
+                     }break;
+                  case 7:
+                      t7.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t7.setForeground(Color.red);
+                     }else{
+                         t7.setForeground(Color.black);
+                     }break;
+                  case 8:
+                      t8.setText(""+i);
+                     break;
+                  case 9:
+                      t9.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t9.setForeground(Color.red);
+                     }else{
+                         t9.setForeground(Color.black);
+                     }break;
+                  case 10:
+                      t10.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t10.setForeground(Color.red);
+                     }else{
+                         t10.setForeground(Color.black);
+                     }break;
+                  case 11:
+                      t11.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t11.setForeground(Color.red);
+                     }else{
+                         t11.setForeground(Color.black);
+                     }break;
+                  case 12:
+                      t12.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t12.setForeground(Color.red);
+                     }else{
+                         t12.setForeground(Color.black);
+                     }break;
+                  case 13:
+                      t13.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t13.setForeground(Color.red);
+                     }else{
+                         t13.setForeground(Color.black);
+                     }break;
+                  case 14:
+                      t14.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t14.setForeground(Color.red);
+                     }else{
+                         t14.setForeground(Color.black);
+                     }break;
+                  case 15:
+                      t15.setText(""+i);
+                     break;
+                  case 16:
+                      t16.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t16.setForeground(Color.red);
+                     }else{
+                         t16.setForeground(Color.black);
+                     }break;
+                  case 17:
+                      t17.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t17.setForeground(Color.red);
+                     }else{
+                         t17.setForeground(Color.black);
+                     }break;
+                  case 18:
+                      t18.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t18.setForeground(Color.red);
+                     }else{
+                         t18.setForeground(Color.black);
+                     }break;
+                  case 19:
+                      t19.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t19.setForeground(Color.red);
+                     }else{
+                         t19.setForeground(Color.black);
+                     }break;
+                  case 20:
+                      t20.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t20.setForeground(Color.red);
+                     }else{
+                         t20.setForeground(Color.black);
+                     }break;
+                  case 21:
+                      t21.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t21.setForeground(Color.red);
+                     }else{
+                         t21.setForeground(Color.black);
+                     }break;
+                  case 22:
+                      t22.setText(""+i);
+                     break;
+                  case 23:
+                      t23.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t23.setForeground(Color.red);
+                     }else{
+                         t23.setForeground(Color.black);
+                     }break;
+                  case 24:
+                      t24.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t24.setForeground(Color.red);
+                     }else{
+                         t24.setForeground(Color.black);
+                     }break;
+                  case 25:
+                      t25.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t25.setForeground(Color.red);
+                     }else{
+                         t25.setForeground(Color.black);
+                     }break;
+                  case 26:
+                      t26.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t26.setForeground(Color.red);
+                     }else{
+                         t26.setForeground(Color.black);
+                     }break;
+                  case 27:
+                      t27.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t27.setForeground(Color.red);
+                     }else{
+                         t27.setForeground(Color.black);
+                     }break;
+                  case 28:
+                      t28.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t28.setForeground(Color.red);
+                     }else{
+                         t28.setForeground(Color.black);
+                     }break;
+                  case 29:
+                      t29.setText(""+i);
+                     break;
+                  case 30:
+                      t30.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t30.setForeground(Color.red);
+                     }else{
+                         t30.setForeground(Color.black);
+                     }break;
+                  case 31:
+                      t31.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t31.setForeground(Color.red);
+                     }else{
+                         t31.setForeground(Color.black);
+                     }break;
+                  case 32:
+                      t32.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t32.setForeground(Color.red);
+                     }else{
+                         t32.setForeground(Color.black);
+                     }break;
+                  case 33:
+                      t33.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t33.setForeground(Color.red);
+                     }else{
+                         t33.setForeground(Color.black);
+                     }break;
+                  case 34:
+                      t34.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t34.setForeground(Color.red);
+                     }else{
+                         t34.setForeground(Color.black);
+                     }break;
+                  case 35:
+                      t35.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t35.setForeground(Color.red);
+                     }else{
+                         t35.setForeground(Color.black);
+                     }break;
+                  case 36:
+                      t36.setText(""+i);
+                     break;
+                  case 37:
+                      t37.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t37.setForeground(Color.red);
+                     }else{
+                         t37.setForeground(Color.black);
+                     }break;
+                  case 38:
+                      t38.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t38.setForeground(Color.red);
+                     }else{
+                         t38.setForeground(Color.black);
+                     }break;
+                  case 39:
+                      t39.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t39.setForeground(Color.red);
+                     }else{
+                         t39.setForeground(Color.black);
+                     }break;
+                  case 40:
+                      t40.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t40.setForeground(Color.red);
+                     }else{
+                         t40.setForeground(Color.black);
+                     }break;
+                  case 41:
+                      t41.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t41.setForeground(Color.red);
+                     }else{
+                         t41.setForeground(Color.black);
+                     }break;
+                  case 42:
+                      t42.setText(""+i);
+                     if(i == DiaFixo & MesAltera == MesFixo - 1 & AnoAltera== AnoFixo){
+                         t42.setForeground(Color.red);
+                     }else{
+                         t42.setForeground(Color.black);
+                     }break;
+                  
+                }
+              SetaDia++;
+          }
+          
         }
+            
+    }
 
 
